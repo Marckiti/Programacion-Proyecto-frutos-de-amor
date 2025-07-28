@@ -58,3 +58,33 @@ void MainWindow::on_btnAgregar_clicked()
 
     QMessageBox::information(this, "Agregado", "Paciente agregado con exito");
 }
+
+void MainWindow::on_btnActualizar_clicked()
+{
+    if (ui->txtID->text() == "") {
+        QMessageBox::warning(this, "Campo vacío", "Por favor ingresa el ID.");
+        return;
+    }
+
+    if (ui->txtNombre->text() == "" || ui->txtApellido->text() == "" || ui->txtEdad->text() == "") {
+        QMessageBox::warning(this, "Campos vacíos", "Completa todos los campos.");
+        return;
+    }
+
+    int idBuscado = ui->txtID->text().toInt();
+    bool encontrado = false;
+
+    for (int i = 0; i < listaPacientes.size(); ++i) {
+        if (listaPacientes[i].id == idBuscado) {
+            listaPacientes[i].nombre = ui->txtNombre->text();
+            listaPacientes[i].apellido = ui->txtApellido->text();
+            listaPacientes[i].edad = ui->txtEdad->text().toInt();
+            listaPacientes[i].adiccion = ui->cmbAdixion->currentText();
+            listaPacientes[i].diasIngreso = ui->cmbMeses->currentText().toInt();
+            listaPacientes[i].fechaIngreso = ui->dateIngreso->selectedDate();
+            encontrado = true;
+            break;
+        }
+    }
+
+
