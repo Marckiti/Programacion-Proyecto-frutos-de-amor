@@ -1,0 +1,16 @@
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include <QMessageBox>
+#include <QFile>
+#include <QFileDialog>
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    ui->txtEdad->setValidator(new QIntValidator(1, 150, this));
+    ui->tableWidget->setColumnCount(7);
+    QStringList titulos = {"ID","Nombre", "Apellido", "Edad", "Adicción", "Meses", "Fecha de ingreso"};
+    ui->tableWidget->setHorizontalHeaderLabels(titulos);
+}
