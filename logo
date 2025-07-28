@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/logo">
+        <file alias="logo">frutos de amor.jpg</file>
+    </qresource>
+    <qresource prefix="/new/prefix1">
+        <file alias="LOGO2">logo2.jpeg</file>
+    </qresource>
+    <qresource prefix="/new/prefix2">
+        <file alias="100">100.jpg</file>
+    </qresource>
+</RCC>
