@@ -86,5 +86,28 @@ void MainWindow::on_btnActualizar_clicked()
             break;
         }
     }
+    ui->txtNombre->clear();
+    ui->txtApellido->clear();
+    ui->txtEdad->clear();
+    ui->cmbAdixion->setCurrentIndex(0);
+    ui->cmbMeses->setCurrentIndex(0);
 
+    if (encontrado) {
+        ui->tableWidget->setRowCount(listaPacientes.size());
+        for (int i = 0; i < listaPacientes.size(); ++i) {
+            const Paciente &p = listaPacientes[i];
+            ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(p.id)));
+            ui->tableWidget->setItem(i, 1, new QTableWidgetItem(p.nombre));
+            ui->tableWidget->setItem(i, 2, new QTableWidgetItem(p.apellido));
+            ui->tableWidget->setItem(i, 3, new QTableWidgetItem(QString::number(p.edad)));
+            ui->tableWidget->setItem(i, 4, new QTableWidgetItem(p.adiccion));
+            ui->tableWidget->setItem(i, 5, new QTableWidgetItem(QString::number(p.diasIngreso)));
+            ui->tableWidget->setItem(i, 6, new QTableWidgetItem(p.fechaIngreso.toString("dd/MM/yyyy")));
+        }
+
+        QMessageBox::information(this, "Actualizado", "Paciente actualizado correctamente.");
+    } else {
+        QMessageBox::warning(this, "Error", "No se encontró un paciente con ese ID.");
+    }
+}
 
